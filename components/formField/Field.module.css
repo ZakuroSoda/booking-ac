@@ -1,0 +1,49 @@
+.parent {
+  position: relative;
+}
+
+.field {
+  font-family: sans-serif;
+  width: 100%;
+  padding: 16px 10px 8px 10px;
+  border: 1px solid #595959;
+  background-color: #EBF8FA;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.textArea {
+  resize: none;
+  height: 5rem;
+}
+
+.field:focus,
+.field:active {
+  outline: none;
+  border: 1px solid #000000;
+}
+
+.fieldLabel {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 0 0.2rem;
+
+  position: absolute;
+  pointer-events: none;
+  top: calc((16px + 8px + 1rem)/2); /* Top, bottom padding + font size divided by two to center vert*/
+  left: 10px;
+  transition: top 0.2s, font-size 0.2s, color 0.2s;
+  transform: translateY(-50%);
+  color: #595959;
+}
+
+
+.field:focus + .fieldLabel,
+.field:active + .fieldLabel,
+.field:not(:placeholder-shown) + .fieldLabel {
+  top: 0px;
+  font-size: 0.7rem;
+  color: #000000;
+  background-color: #EBF8FA !important;
+}

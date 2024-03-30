@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map(name: "session_token")
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token], name: "identifier_token")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime  @map(name: "email_verified")
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  Session       Session[]
+}
+
+model EmailWhitelist {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+}
+
+model Location {
+  id Int @id @default(autoincrement())
+  name String
+  Event Event[]
+}
+
+model Event {
+  id Int @id @default(autoincrement())
+  title String
+  type String
+  description String
+  spectators String
+  sharing String
+  recurrence String
+  start DateTime
+  end DateTime
+  locationId Int
+  Locations Location @relation(fields: [locationId], references: [id])
+}
