@@ -23,15 +23,17 @@ export default function LoginForm() {
       })
 
       if (result && !result.error) {
-        toast.dismiss();
+        toast.dismiss()
         toast.success(
           "Check your inbox for the magic link to login!",
-        );
+        )
       } else {
-        toast.dismiss();
+        toast.dismiss()
         toast.error((result?.error == "AccessDenied") ? "Email not in whitelist!" : result?.error ?? "An error occurred")
       }
     }
+
+    setEmail('')
   }
   return (
     <>

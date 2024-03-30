@@ -44,7 +44,7 @@ model Location {
 }
 
 model Event {
-  id Int @id @default(autoincrement())
+  uid String @id @default(cuid())
   title String
   type String
   description String

@@ -1,0 +1,14 @@
+.item {
+  border-radius: 8px;
+  border: 1px solid black;
+  margin: 1rem 0;
+  padding: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 7.8px 7.8px 5.2px;
+  /*Todo: can experiment with putting image of facility as the background image*/
+}
+
+.itemHeader {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}

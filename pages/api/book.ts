@@ -30,7 +30,6 @@ export default async function handler(req: any, res: any) {
     });
 
   const data = JSON.parse(req.body)
-  console.log(session.user.id, data)
   const { title, type, description, spectators, sharing, recurrence, start, end, locationId } = data
 
   if (!title || !type || !description || !spectators || !sharing || !recurrence || !start || !end || !locationId) {
@@ -40,7 +39,7 @@ export default async function handler(req: any, res: any) {
     });
   }
 
-  await prisma.event.create({
+  const result = await prisma.event.create({
     data: {
       title,
       type,
@@ -55,5 +54,5 @@ export default async function handler(req: any, res: any) {
   });
   
 
-  res.status(200).json({ success: true })
+  res.status(200).json({ eventId: result.uid })
 }

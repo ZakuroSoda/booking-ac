@@ -1,23 +1,25 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 import { toast } from "react-toastify"
 import styles from "./BookingForm.module.css"
 import Field from "@/components/formField/Field"
 import Button from "@/components/formButton/Button"
 
 export default function BookingForm({ location }: { location: { id: number, name: string } }) {
+  const router = useRouter()
 
-  const [data, setData] = useState({
+  const reset = {
     title: "",
-    type: "",
+    type: "il",
     description: "",
-    spectators: "",
-    sharing: "",
-    recurrence: "",
+    spectators: "y",
+    sharing: "y",
+    recurrence: "n",
     start: "",
     end: "",
-  })
-
+  }
+  const [data, setData] = useState(reset)
 
   const handleChange = (target: any) => {
     const { name, value } = target
@@ -30,13 +32,27 @@ export default function BookingForm({ location }: { location: { id: number, name
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    fetch("/api/book", {
+    toast.loading("Creating event...")
+    const result = await fetch("/api/book", {
       method: "POST",
       body: JSON.stringify({
         ...data,
         locationId: location.id,
       }),
     })
+    if (result.status === 400) {
+      toast.dismiss()
+      toast.error("Please fill in all fields.")
+    }
+    if (result.status === 200) {
+      toast.dismiss()
+      toast.success("Event created successfully.")
+
+      const { eventId } = await result.json()
+      router.push(`/${location.id}/${eventId}`)
+    }
+
+    setData(reset)
   }
 
   return (
