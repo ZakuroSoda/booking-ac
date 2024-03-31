@@ -71,3 +71,25 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Customize Thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #155e70;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #023047;
+  border: 1px solid #333333;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #023047;
+  border: 1px solid #333333;
+}
+/* Customize Track */
+::-webkit-scrollbar-track {
+  border: 1px solid gray;
+  border-radius: 8px;
+}

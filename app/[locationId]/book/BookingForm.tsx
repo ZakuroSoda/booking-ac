@@ -42,7 +42,8 @@ export default function BookingForm({ location }: { location: { id: number, name
     })
     if (result.status === 400) {
       toast.dismiss()
-      toast.error("Please fill in all fields.")
+      const text = await result.text()
+      toast.error(text)
     }
     if (result.status === 200) {
       toast.dismiss()

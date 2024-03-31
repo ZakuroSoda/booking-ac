@@ -39,6 +39,18 @@ export default async function handler(req: any, res: any) {
     });
   }
 
+  const startDate = new Date(start)
+  const endDate = new Date(end)
+  const valid = (endDate.getTime() - startDate.getTime()) > (1 * 24 * 60 * 60 * 1000)
+
+  // end must be after start, end must be maximum 1 week after start
+  if (endDate < startDate || valid) {
+    return res.status(400).json({
+      status: "error",
+      response: "End date must be at most 1 day after start date",
+    });
+  }
+
   const result = await prisma.event.create({
     data: {
       title,
@@ -47,8 +59,8 @@ export default async function handler(req: any, res: any) {
       spectators,
       sharing,
       recurrence,
-      start: new Date(start),
-      end: new Date(end),
+      start: startDate,
+      end: endDate,
       locationId,
     },
   });
