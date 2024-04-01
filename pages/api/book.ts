@@ -41,13 +41,27 @@ export default async function handler(req: any, res: any) {
 
   const startDate = new Date(start)
   const endDate = new Date(end)
-  const valid = (endDate.getTime() - startDate.getTime()) > (1 * 24 * 60 * 60 * 1000)
+  const lengthInvalid = (endDate.getTime() - startDate.getTime()) > (10 * 60 * 60 * 1000)
+  const dayInvalid = (endDate.getDay() !== startDate.getDay())
 
-  // end must be after start, end must be maximum 1 week after start
-  if (endDate < startDate || valid) {
+  if (endDate < startDate) {
     return res.status(400).json({
       status: "error",
-      response: "End date must be at most 1 day after start date",
+      response: "Event must end after it starts",
+    });
+  }
+
+  if (lengthInvalid) {
+    return res.status(400).json({
+      status: "error",
+      response: "Event cannot be longer than 10 hours",
+    });
+  }
+
+  if (dayInvalid) {
+    return res.status(400).json({
+      status: "error",
+      response: "Event cannot span multiple days",
     });
   }
 

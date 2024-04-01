@@ -27,7 +27,6 @@ export default function BookingForm({ location }: { location: { id: number, name
       ...data,
       [name]: value,
     })
-    console.log(value)
   }
 
   const handleSubmit = async (e: any) => {
@@ -42,18 +41,18 @@ export default function BookingForm({ location }: { location: { id: number, name
     })
     if (result.status === 400) {
       toast.dismiss()
-      const text = await result.text()
-      toast.error(text)
+      const text = await result.json()
+      toast.error(text.response)
     }
     if (result.status === 200) {
+      setData(reset)
+
       toast.dismiss()
       toast.success("Event created successfully.")
 
       const { eventId } = await result.json()
       router.push(`/${location.id}/${eventId}`)
     }
-
-    setData(reset)
   }
 
   return (

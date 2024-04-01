@@ -1,0 +1,40 @@
+.day {
+  flex: 0 0 calc(100% / 7);
+  border-right: 1px solid gray;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.dayEvents{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.day:last-child {
+  border-right: none;
+}
+
+.dayHeader {
+  font-size: 1.1rem;
+  font-weight: 550;
+  padding: 0.5rem;
+}
+
+.dayEvent {
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0.5rem 0.5rem 0.2rem 0.5rem;
+  background-color: #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  cursor: pointer;
+}
