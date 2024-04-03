@@ -38,3 +38,11 @@
 
   cursor: pointer;
 }
+
+.over {
+  opacity: 0.5;
+}
+
+.ongoing {
+  background-color: yellow !important;
+}

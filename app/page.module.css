@@ -18,6 +18,7 @@
 }
 
 .galleryItem {
+  cursor: pointer;
   border-radius: 8px;
   border: 1px solid black;
   flex: 0 0 32%;

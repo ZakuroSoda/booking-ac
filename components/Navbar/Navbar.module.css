@@ -1,0 +1,53 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  padding: 0 8px;
+  background-color: #def9fd;
+  border-bottom: 1px solid gray;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.navbar .right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar .left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navlink,
+.text {
+  display: block;
+  align-self: center;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 0 1em;
+
+  color: #1e1e1e;
+}
+
+.username {
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #1e1e1e;
+}
+
+.username:hover {
+  text-decoration: underline;
+}
+
+.navlink:hover {
+  text-decoration: underline;
+}

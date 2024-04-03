@@ -19,6 +19,7 @@ export default function LoginForm() {
       toast.loading("Sending magic link to your email...")
       const result = await signIn("email", {
         email: email,
+        callbackUrl: "/",
         redirect: false,
       })
 

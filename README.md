@@ -11,7 +11,7 @@
 - Event Type: One-Off/Recurring
 - Event Strictness: DO NOT STEP FOOT ON MY FIELD to IDGAF IF YOU USE MY FIELD WHILE IM ON IT
 - Event Description
-
+- User who added
 
 ## /[facility]
 Opens up a timeline of the facility's usage over the next week. Historical records will be unaccessible.

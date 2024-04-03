@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { PrismaClient } from "@prisma/client"
 import Column from "@/app/[locationId]/Column"
 import styles from "./page.module.css"
@@ -15,10 +13,6 @@ export default async function page({
     locationId: string
   }
 }) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user) {
-    redirect("/login")
-  }
 
   const locationId = parseInt(params.locationId)
   if (isNaN(locationId)) {
@@ -92,6 +86,7 @@ function dayMapper() {
 
 async function eventMapper(locationId: number) {
   const today = new Date()
+  today.setHours(0, 0, 0, 0)
   const nextWeek = new Date(new Date().setDate(today.getDate() + 7))
 
   const events = await prisma.event.findMany({
@@ -116,6 +111,9 @@ async function eventMapper(locationId: number) {
 
   for (let i = 0; i < 7; i++) {
     eventsArray[i].sort((a, b) => {
+      if (a.start.getTime() === b.start.getTime()) {
+        return a.end.getTime() - b.end.getTime()
+      }
       return a.start.getTime() - b.start.getTime()
     })
   }

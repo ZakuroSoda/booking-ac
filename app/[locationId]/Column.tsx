@@ -1,6 +1,7 @@
 import styles from './column.module.css'
 import { Event } from '@prisma/client'
 import Link from 'next/link'
+import classNames from 'classnames'
 
 export default function Column({ locationId, date, events }: {
   locationId: number,
@@ -15,7 +16,11 @@ export default function Column({ locationId, date, events }: {
           {events.map((event, key) => (
             <>
               <Link href={`${locationId}/${event.uid}`}>
-              <div className={styles.dayEvent} key={key}>
+              <div className={
+                ongoing(event) ? classNames(styles.dayEvent, styles.ongoing) :
+                  over(event) ? classNames(styles.dayEvent, styles.over) :
+                    styles.dayEvent
+                } key={key}>
                 <div className={styles.dayEventTitle}>{titleFormatter(event.title)}</div>
                 <div className={styles.dayEventTime}>{timeFormatter(event.start)} - {timeFormatter(event.end)}</div>
               </div>
@@ -26,6 +31,16 @@ export default function Column({ locationId, date, events }: {
       </div>
     </>
   )
+}
+
+function over(event: Event) {
+  const now = new Date()
+  return now > event.end
+}
+
+function ongoing(event: Event) {
+  const now = new Date()
+  return now >= event.start && now <= event.end
 }
 
 function timeFormatter(date: Date) {
