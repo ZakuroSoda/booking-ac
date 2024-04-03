@@ -3,24 +3,24 @@ import Link from "next/link"
 import { Location, Event } from "@prisma/client"
 import styles from "./Card.module.css"
 
-export default function Card({ location, event }: { location: Location, event: Event }) {
+export default function Card({ location, event }: { location: Location, event: Event | null }) {
   if (!event) {
     return (
       <>
-        <Link href={`/${location.id}`}>
-          <div className={classNames(styles.galleryItem, styles.galleryItemGreen)}>
-            <div className={styles.galleryItemHeader}>
+        <div className={classNames(styles.galleryItem, styles.galleryItemGreen)}>
+          <div className={styles.galleryItemHeader}>
+            <Link href={`/${location.id}`}>
               {location.name}: No Events Ongoing
-            </div>
-            <blockquote>
-              There are no events happening at {location.name} right now.
-              <br /><br />
-              Students may feel free to use the venue for free play. Students are reminded to wear PE attire and hydrate regularly.
-              <br /><br />
-              For external users, please book the field through other platforms.
-            </blockquote>
+            </Link>
           </div>
-        </Link>
+          <blockquote>
+            There are no events happening at {location.name} right now.
+            <br /><br />
+            Students may feel free to use the venue for free play. Students are reminded to wear PE attire and hydrate regularly.
+            <br /><br />
+            For external users, please book the facility through other platforms.
+          </blockquote>
+        </div>
       </>
     )
   }
@@ -28,7 +28,7 @@ export default function Card({ location, event }: { location: Location, event: E
   return (
     <>
       <Link href={`/${location.id}`}>
-        <div className={classNames(styles.galleryItem, styles.galleryItemRed)}>
+        <div className={classNames(styles.galleryItem, styles.galleryItemYellow)}>
           <div className={styles.galleryItemHeader}>
             {location.name}: {event.title}
           </div>

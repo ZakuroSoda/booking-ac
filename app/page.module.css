@@ -8,13 +8,19 @@
 }
 
 .gallery {
-  margin: 5vh 0;
+  margin: 1rem 0 0 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+}
+
+@media only screen and (max-width: 768px){
+  .gallery {
+    gap: 0;
+  }
 }
 
 .galleryItem {

@@ -15,8 +15,6 @@ export default function NavBar({
 }) {
   const active = usePathname();
 
-  console.log(session)
-
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>

@@ -1,4 +1,3 @@
-import { signOut } from "next-auth/react"
 import { PrismaClient } from "@prisma/client"
 import styles from "./page.module.css"
 import Card from "../components/Card/Card"
@@ -23,6 +22,8 @@ export default async function page() {
     })
     if (event) {
       events.push(event)
+    } else {
+      events.push(null)
     }
   }
 
@@ -33,7 +34,9 @@ export default async function page() {
           Welcome to Booking@AC.
         </h1>
         <div className={styles.gallery}>
-          <Card location={locations[0]} event={events[0]}/>
+          {events.map((event, index) => (
+            <Card location={locations[index]} event={event} key={index}/>
+          ))}
         </div>
       </div>
     </>

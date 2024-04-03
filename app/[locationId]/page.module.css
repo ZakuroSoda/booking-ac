@@ -28,7 +28,7 @@
 }
 
 .calendar {
-  margin: 2rem 0;
+  margin: 2rem 0 0.5rem 0;
   display: flex;
   flex-wrap: nowrap;
   justify-content: left;
