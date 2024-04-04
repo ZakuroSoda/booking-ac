@@ -27,38 +27,38 @@ export default function Card({ location, event }: { location: Location, event: E
 
   return (
     <>
-      <Link href={`/${location.id}`}>
-        <div className={classNames(styles.galleryItem, styles.galleryItemYellow)}>
-          <div className={styles.galleryItemHeader}>
+      <div className={classNames(styles.galleryItem, styles.galleryItemYellow)}>
+        <div className={styles.galleryItemHeader}>
+          <Link href={`/${location.id}`}>
             {location.name}: {event.title}
-          </div>
-          <ul>
-            <li>{event.spectators === "y" ? "Spectators welcome" : "No spectators welcome"}</li>
-            <li>{event.sharing === "y" ? "Sharing of venue possible" : "No sharing of venue"}</li>
-            <li>
-              {{
-                "il": "Internal Lesson",
-                "ic": "Internal CCA",
-                "ie": "Internal Event",
-                "ec": "External Competition",
-                "ee": "External Event",
-              }[event.type]}
-            </li>
-            <li>
-              {
-                event.recurrence === "n" ? "Once-Off" :
-                  `Recurs every ${{
-                    "d": "day",
-                    "w": "week",
-                    "m": "month",
-                  }[event.recurrence]
-                  }`
-              }
-            </li>
-          </ul>
-          <blockquote>{event.description}</blockquote>
+          </Link>
         </div>
-      </Link>
+        <ul>
+          <li>{event.spectators === "y" ? "Spectators welcome" : "No spectators welcome"}</li>
+          <li>{event.sharing === "y" ? "Sharing of venue possible" : "No sharing of venue"}</li>
+          <li>
+            {{
+              "il": "Internal Lesson",
+              "ic": "Internal CCA",
+              "ie": "Internal Event",
+              "ec": "External Competition",
+              "ee": "External Event",
+            }[event.type]}
+          </li>
+          <li>
+            {
+              event.recurrence === "n" ? "Once-Off" :
+                `Recurs every ${{
+                  "d": "day",
+                  "w": "week",
+                  "m": "month",
+                }[event.recurrence]
+                }`
+            }
+          </li>
+        </ul>
+        <blockquote>{event.description}</blockquote>
+      </div>
     </>
   )
 }

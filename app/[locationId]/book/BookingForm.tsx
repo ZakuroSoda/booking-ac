@@ -59,7 +59,7 @@ export default function BookingForm({ location }: { location: { id: number, name
     <>
       <div className={styles.edit}>
         <div className={styles.editHeader}>Book Usage of the {location.name}</div>
-        <div className={styles.editDesc}>Since you are a student, you'll require a teacher's approval.</div>
+        <div className={styles.editDesc}>Since you are a student, you&apos;ll require a teacher&apos;s approval.</div>
         <form className={styles.editForm} onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.editFormRow}>
             <Field

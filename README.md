@@ -1,5 +1,13 @@
 # Booking@AC
 
+## TODO:
+
+- [ ] Implement Administrative System
+- [ ] Implement Approval System by Teachers
+- [ ] Collect Market Data on NEED for this System
+- [ ] DOCKERise for Production
+- [ ] Collect feedback with beta-user testing: We aim to propose to SRADM with testing already done.
+
 ## /
 
 - Red: LOCKED/Closed totally/Yellow: No/Green: Open to students for free play
