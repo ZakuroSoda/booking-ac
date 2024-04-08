@@ -76,6 +76,7 @@ export default async function handler(req: any, res: any) {
       start: startDate,
       end: endDate,
       locationId,
+      bookedBy: session.user.id,
     },
   });
   

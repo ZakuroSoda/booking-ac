@@ -4,6 +4,23 @@ import Card from "../components/Card/Card"
 
 const prisma = new PrismaClient()
 
+export interface event {
+  title: string
+  type: string
+  description: string
+  spectators: string
+  sharing: string
+  recurrence: string
+  start: Date
+  end: Date
+  Locations: {
+    name: string
+  }
+  User: {
+    email: string
+  }
+}
+
 export default async function page() {
   const locations = await prisma.location.findMany()
   const today = new Date()
@@ -18,6 +35,22 @@ export default async function page() {
         end: {
           gte: today
         },
+      },
+      select: {
+        title: true,
+        type: true,
+        description: true,
+        spectators: true,
+        sharing: true,
+        recurrence: true,
+        start: true,
+        end: true,
+        Locations: true,
+        User: {
+          select: {
+            email: true
+          }
+        }
       }
     })
     if (event) {

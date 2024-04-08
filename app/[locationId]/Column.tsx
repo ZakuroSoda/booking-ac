@@ -1,5 +1,6 @@
 import styles from './column.module.css'
 import { Event } from '@prisma/client'
+import { timeFormatter } from '@/components/Card/Card'
 import Link from 'next/link'
 import classNames from 'classnames'
 
@@ -41,19 +42,6 @@ function over(event: Event) {
 function ongoing(event: Event) {
   const now = new Date()
   return now >= event.start && now <= event.end
-}
-
-function timeFormatter(date: Date) {
-  var h = date.getHours();
-  var m = date.getMinutes();
-
-  // Format hours, minutes, and seconds to ensure they have leading zeros if needed
-  const hours = (h < 10 ? "0" : "") + h;
-  const minutes = (m < 10 ? "0" : "") + m;
-
-  // Concatenate to form the 24-hour time string
-  var time24 = hours + ":" + minutes;
-  return time24;
 }
 
 function titleFormatter(title: string) {

@@ -1,9 +1,10 @@
 import classNames from "classnames"
 import Link from "next/link"
-import { Location, Event } from "@prisma/client"
+import { Location } from "@prisma/client"
 import styles from "./Card.module.css"
+import { event } from "@/app/page"
 
-export default function Card({ location, event }: { location: Location, event: Event | null }) {
+export default function Card({ location, event }: { location: Location, event: event | null }) {
   if (!event) {
     return (
       <>
@@ -33,6 +34,9 @@ export default function Card({ location, event }: { location: Location, event: E
             {location.name}: {event.title}
           </Link>
         </div>
+        <div className={styles.galleryItemTime}>
+          {timeFormatter(event.start)} - {timeFormatter(event.end)}
+        </div>
         <ul>
           <li>{event.spectators === "y" ? "Spectators welcome" : "No spectators welcome"}</li>
           <li>{event.sharing === "y" ? "Sharing of venue possible" : "No sharing of venue"}</li>
@@ -58,7 +62,23 @@ export default function Card({ location, event }: { location: Location, event: E
           </li>
         </ul>
         <blockquote>{event.description}</blockquote>
+        <ul>
+          <li>Booked by {event.User.email}</li>
+        </ul>
       </div>
     </>
   )
+}
+
+export function timeFormatter(date: Date) {
+  var h = date.getHours();
+  var m = date.getMinutes();
+
+  // Format hours, minutes, and seconds to ensure they have leading zeros if needed
+  const hours = (h < 10 ? "0" : "") + h;
+  const minutes = (m < 10 ? "0" : "") + m;
+
+  // Concatenate to form the 24-hour time string
+  var time24 = hours + ":" + minutes;
+  return time24;
 }

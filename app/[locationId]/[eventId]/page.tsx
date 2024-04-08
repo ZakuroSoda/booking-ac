@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { PrismaClient } from "@prisma/client"
+import { timeFormatter } from '@/components/Card/Card'
 import styles from "./page.module.css"
 
 const prisma = new PrismaClient()
@@ -41,6 +42,11 @@ export default async function page({
       start: true,
       end: true,
       Locations: true,
+      User: {
+        select: {
+          email: true
+        }
+      }
     },
     where: {
       uid: params.eventId
@@ -55,6 +61,9 @@ export default async function page({
       <div className={styles.item}>
         <div className={styles.itemHeader}>
           {event.Locations.name}: {event.title}
+        </div>
+        <div className={styles.itemTime}>
+          {timeFormatter(event.start)} - {timeFormatter(event.end)}
         </div>
         <ul>
           <li>{event.spectators === "y" ? "Spectators welcome" : "No spectators welcome"}</li>
@@ -71,17 +80,19 @@ export default async function page({
           <li>
             {
               event.recurrence === "n" ? "Once-Off" :
-              `Recurs every ${
-                {
+                `Recurs every ${{
                   "d": "day",
                   "w": "week",
                   "m": "month",
                 }[event.recurrence]
-              }`
+                }`
             }
           </li>
         </ul>
         <blockquote>{event.description}</blockquote>
+        <ul>
+          <li>Booked by {event.User.email}</li>
+        </ul>
       </div>
     </>
   );

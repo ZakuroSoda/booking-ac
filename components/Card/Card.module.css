@@ -18,7 +18,12 @@
 .galleryItemHeader {
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.galleryItemTime {
   margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .galleryItemGreen {

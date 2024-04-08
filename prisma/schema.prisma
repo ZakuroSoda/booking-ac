@@ -30,6 +30,7 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   Session       Session[]
+  Event         Event[]
 }
 
 model EmailWhitelist {
@@ -55,4 +56,6 @@ model Event {
   end DateTime
   locationId Int
   Locations Location @relation(fields: [locationId], references: [id])
+  bookedBy String
+  User User @relation(fields: [bookedBy], references: [id])
 }
