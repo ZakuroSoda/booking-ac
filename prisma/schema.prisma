@@ -24,9 +24,10 @@ model VerificationToken {
 }
 
 model User {
-  id            String       @id @default(cuid())
+  id            String    @id @default(cuid())
   email         String    @unique
   emailVerified DateTime  @map(name: "email_verified")
+  name          String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
   Session       Session[]
@@ -39,23 +40,23 @@ model EmailWhitelist {
 }
 
 model Location {
-  id Int @id @default(autoincrement())
-  name String
+  id    Int     @id @default(autoincrement())
+  name  String
   Event Event[]
 }
 
 model Event {
-  uid String @id @default(cuid())
-  title String
-  type String
+  uid         String   @id @default(cuid())
+  title       String
+  type        String
   description String
-  spectators String
-  sharing String
-  recurrence String
-  start DateTime
-  end DateTime
-  locationId Int
-  Locations Location @relation(fields: [locationId], references: [id])
-  bookedBy String
-  User User @relation(fields: [bookedBy], references: [id])
+  spectators  String
+  sharing     String
+  recurrence  String
+  start       DateTime
+  end         DateTime
+  locationId  Int
+  Locations   Location @relation(fields: [locationId], references: [id])
+  bookedBy    String
+  User        User     @relation(fields: [bookedBy], references: [id])
 }

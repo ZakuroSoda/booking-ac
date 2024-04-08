@@ -44,9 +44,10 @@ export default async function page({
       Locations: true,
       User: {
         select: {
-          email: true
-        }
-      }
+          email: true,
+          name: true,
+        },
+      },
     },
     where: {
       uid: params.eventId
@@ -91,7 +92,7 @@ export default async function page({
         </ul>
         <blockquote>{event.description}</blockquote>
         <ul>
-          <li>Booked by {event.User.email}</li>
+          <li>Booked by { event.User.name ?? event.User.email }</li>
         </ul>
       </div>
     </>

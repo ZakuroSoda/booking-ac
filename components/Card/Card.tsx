@@ -63,7 +63,7 @@ export default function Card({ location, event }: { location: Location, event: e
         </ul>
         <blockquote>{event.description}</blockquote>
         <ul>
-          <li>Booked by {event.User.email}</li>
+          <li>Booked by { event.User.name ?? event.User.email }</li>
         </ul>
       </div>
     </>

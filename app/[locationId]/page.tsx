@@ -86,7 +86,7 @@ function dayMapper() {
 
 async function eventMapper(locationId: number) {
   const today = new Date()
-  today.setHours(0, 0, 0, 0)
+  today.setHours(0, 0, 0, 0) // get events from now onwards and ALSO events that started today
   const nextWeek = new Date(new Date().setDate(today.getDate() + 7))
 
   const events = await prisma.event.findMany({

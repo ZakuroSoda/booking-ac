@@ -18,6 +18,7 @@ export interface event {
   }
   User: {
     email: string
+    name: string | null
   }
 }
 
@@ -48,7 +49,8 @@ export default async function page() {
         Locations: true,
         User: {
           select: {
-            email: true
+            email: true,
+            name: true
           }
         }
       }

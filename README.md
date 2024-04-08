@@ -2,6 +2,8 @@
 
 ## TODO:
 
+- [X] Implement Booked-By WHO
+- [ ] PREVENT SAME SLOT BOOKING + HANDLE CONFLICTS?
 - [ ] Implement Administrative System
 - [ ] Implement Approval System by Teachers
 - [ ] Collect Market Data on NEED for this System
