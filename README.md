@@ -3,6 +3,7 @@
 ## TODO:
 
 - [X] Implement Booked-By WHO
+- [ ] Let user change their username?
 - [ ] PREVENT SAME SLOT BOOKING + HANDLE CONFLICTS?
 - [ ] Implement Administrative System
 - [ ] Implement Approval System by Teachers
