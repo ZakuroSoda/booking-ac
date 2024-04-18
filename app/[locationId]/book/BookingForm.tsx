@@ -5,6 +5,7 @@ import { toast } from "react-toastify"
 import styles from "./BookingForm.module.css"
 import Field from "@/components/formField/Field"
 import Button from "@/components/formButton/Button"
+import Toggle from "@/components/Toggle/Toggle"
 
 export default function BookingForm({ location }: { location: { id: number, name: string } }) {
   const router = useRouter()
@@ -169,6 +170,9 @@ export default function BookingForm({ location }: { location: { id: number, name
               onChange={handleChange}
               required={false}
             />
+          </div>
+          <div className={styles.editFormRow}>
+            <Toggle />
           </div>
           <div className={styles.editFormRow}>
             <Button text="Submit" />

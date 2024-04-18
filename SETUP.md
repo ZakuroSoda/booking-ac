@@ -21,4 +21,18 @@ mysql -u root -p
 ```sql
 pw > password
 mysql > ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+mysql > CREATE DATABASE booking_ac;
+mysql > CREATE USER 'raspberrypi'@'localhost' IDENTIFIED BY 'raspberrypi';
+mysql > GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP ON booking_ac.* TO 'raspberrypi'@'localhost';
+```
+
+```bash
+cp .env.example .env
+nano .env
+npx prisma db push
+```
+
+```bash
+npm run build
+npm start
 ```
