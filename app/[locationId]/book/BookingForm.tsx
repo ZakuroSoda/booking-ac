@@ -28,6 +28,7 @@ export default function BookingForm({ location }: { location: { id: number, name
       ...data,
       [name]: value,
     })
+    console.log(data)
   }
 
   const handleSubmit = async (e: any) => {
@@ -101,37 +102,7 @@ export default function BookingForm({ location }: { location: { id: number, name
               onChange={handleChange}
               required={false}
             />
-          </div> 
-          <div className={styles.editFormRow}>
-            <Field
-              label="Spectators Welcome"
-              id="spectators"
-              name="spectators"
-              type="dropdown"
-              value={data.spectators}
-              onChange={handleChange}
-              required={false}
-              options={{
-                "y": "Yes",
-                "n": "No"
-              }}
-            />
-          </div> 
-          <div className={styles.editFormRow}>
-            <Field
-              label="Open to Sharing"
-              id="sharing"
-              name="sharing"
-              type="dropdown"
-              value={data.sharing}
-              onChange={handleChange}
-              required={false}
-              options={{
-                "y": "Yes",
-                "n": "No"
-              }}
-            />
-          </div> 
+          </div>  
           <div className={styles.editFormRow}>
             <Field
               label="Recurrence"
@@ -172,7 +143,23 @@ export default function BookingForm({ location }: { location: { id: number, name
             />
           </div>
           <div className={styles.editFormRow}>
-            <Toggle />
+            <Toggle
+              header="Preferences"
+              onChange={handleChange}
+              data={[{
+                label: "Spectators Welcome",
+                id: "spectators",
+                name: "spectators",
+                value: "y",
+              },
+              {
+                label: "Allow Sharing (of venue)",
+                id: "sharing",
+                name: "sharing",
+                value: "n",
+              },
+              ]}
+            />
           </div>
           <div className={styles.editFormRow}>
             <Button text="Submit" />
