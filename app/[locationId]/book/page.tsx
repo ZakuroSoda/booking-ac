@@ -37,5 +37,5 @@ export default async function page({
     <>
       <BookingForm location={location} />
     </>
-  );
+  )
 }

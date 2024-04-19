@@ -20,14 +20,14 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({
       status: "error",
       response: `Method ${req.method} Not Allowed`,
-    });
+    })
   }
-  const session = await getServerSession(req, res, authOptions);
+  const session = await getServerSession(req, res, authOptions)
   if (!session?.user)
     return res.status(401).json({
       status: "error",
       response: "Unauthenticated",
-    });
+    })
 
   const data = JSON.parse(req.body)
   const { title, type, description, spectators, sharing, recurrence, start, end, locationId } = data
@@ -36,7 +36,7 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({
       status: "error",
       response: "Missing required fields",
-    });
+    })
   }
 
   const startDate = new Date(start)
@@ -49,21 +49,21 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({
       status: "error",
       response: "Event must end after it starts",
-    });
+    })
   }
 
   if (lengthInvalid) {
     return res.status(400).json({
       status: "error",
       response: "Event cannot be shorter than 10 minutes or longer than 10 hours",
-    });
+    })
   }
 
   if (dayInvalid) {
     return res.status(400).json({
       status: "error",
       response: "Event cannot span multiple days",
-    });
+    })
   }
 
   const conflictCheck = await prisma.event.findFirst({
@@ -92,13 +92,13 @@ export default async function handler(req: any, res: any) {
         },
       ],
     },
-  });
+  })
 
   if (conflictCheck) {
     return res.status(400).json({
       status: "error",
       response: "Event conflicts with existing event",
-    });
+    })
   }
 
   const result = await prisma.event.create({
@@ -114,7 +114,7 @@ export default async function handler(req: any, res: any) {
       locationId,
       bookedBy: session.user.id,
     },
-  });
+  })
 
 
   res.status(200).json({ eventId: result.uid })

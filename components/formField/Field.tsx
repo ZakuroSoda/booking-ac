@@ -103,6 +103,6 @@ export default function Field({
 }
 
 function getCurrentTimeISOString() {
-  const now = new Date();
-  return now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:MM
+  const now = new Date()
+  return now.toISOString().slice(0, 16) // Format: YYYY-MM-DDTHH:MM
 }

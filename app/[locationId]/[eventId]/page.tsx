@@ -96,5 +96,5 @@ export default async function page({
         </ul>
       </div>
     </>
-  );
+  )
 }

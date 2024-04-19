@@ -34,8 +34,8 @@ export const authOptions: NextAuthOptions = {
         ...session.user,
         id: user.id,
         email: user.email,
-      };
-      return session;
+      }
+      return session
     },
     async signIn({ user }) {
       const email = user.email ?? ''
@@ -54,4 +54,4 @@ export const authOptions: NextAuthOptions = {
   },
 }
 
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)

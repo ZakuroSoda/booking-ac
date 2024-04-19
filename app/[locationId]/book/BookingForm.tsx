@@ -28,7 +28,6 @@ export default function BookingForm({ location }: { location: { id: number, name
       ...data,
       [name]: value,
     })
-    console.log(data)
   }
 
   const handleSubmit = async (e: any) => {

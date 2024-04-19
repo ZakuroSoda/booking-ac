@@ -1,12 +1,12 @@
-"use client";
-import { signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
-import styles from "./Navbar.module.css";
-import Link from "next/link";
-import classNames from "classnames";
-import { Location } from "@prisma/client";
-import Image from "next/image";
-import settingsIcon from "./settings.svg";
+"use client"
+import { signOut } from "next-auth/react"
+import { usePathname } from "next/navigation"
+import styles from "./Navbar.module.css"
+import Link from "next/link"
+import classNames from "classnames"
+import { Location } from "@prisma/client"
+import Image from "next/image"
+import settingsIcon from "./settings.svg"
 
 export default function NavBar({
   locations,
@@ -15,7 +15,7 @@ export default function NavBar({
   locations: Location[],
   session: any | null
 }) {
-  const active = usePathname();
+  const active = usePathname()
 
   return (
     <div className={styles.navbar}>
@@ -76,5 +76,5 @@ export default function NavBar({
         )}
       </div>
     </div>
-  );
+  )
 }

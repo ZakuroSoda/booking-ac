@@ -71,14 +71,14 @@ export default function Card({ location, event }: { location: Location, event: e
 }
 
 export function timeFormatter(date: Date) {
-  var h = date.getHours();
-  var m = date.getMinutes();
+  var h = date.getHours()
+  var m = date.getMinutes()
 
   // Format hours, minutes, and seconds to ensure they have leading zeros if needed
-  const hours = (h < 10 ? "0" : "") + h;
-  const minutes = (m < 10 ? "0" : "") + m;
+  const hours = (h < 10 ? "0" : "") + h
+  const minutes = (m < 10 ? "0" : "") + m
 
   // Concatenate to form the 24-hour time string
-  var time24 = hours + ":" + minutes;
-  return time24;
+  var time24 = hours + ":" + minutes
+  return time24
 }

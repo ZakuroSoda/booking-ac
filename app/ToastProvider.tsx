@@ -1,7 +1,7 @@
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify"
 
 interface ToastProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function ToastProvider({ children }: ToastProviderProps) {
@@ -10,5 +10,5 @@ export default function ToastProvider({ children }: ToastProviderProps) {
       {children}
       <ToastContainer style={{ "zIndex": 100000 }} position="bottom-right" theme="colored" />
     </>
-  );
+  )
 }
