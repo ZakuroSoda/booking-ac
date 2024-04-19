@@ -28,6 +28,7 @@ export default function Toggle({
                   type="checkbox"
                   id={item.id}
                   name={item.name}
+                  placeholder={item.value === "y" ? "on" : "off"}
                   onChange={(e) => {
                     e.target.value = e.target.checked ? "y" : "n"
                     onChange(e.target)

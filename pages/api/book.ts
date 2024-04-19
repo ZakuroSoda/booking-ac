@@ -41,7 +41,8 @@ export default async function handler(req: any, res: any) {
 
   const startDate = new Date(start)
   const endDate = new Date(end)
-  const lengthInvalid = (endDate.getTime() - startDate.getTime()) > (10 * 60 * 60 * 1000)
+  const lengthInvalid = (endDate.getTime() - startDate.getTime()) > (10 * 60 * 60 * 1000) ||
+    (endDate.getTime() - startDate.getTime()) < (10 * 60 * 1000)
   const dayInvalid = (endDate.getDay() !== startDate.getDay())
 
   if (endDate < startDate) {
@@ -54,7 +55,7 @@ export default async function handler(req: any, res: any) {
   if (lengthInvalid) {
     return res.status(400).json({
       status: "error",
-      response: "Event cannot be longer than 10 hours",
+      response: "Event cannot be shorter than 10 minutes or longer than 10 hours",
     });
   }
 
@@ -62,6 +63,41 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({
       status: "error",
       response: "Event cannot span multiple days",
+    });
+  }
+
+  const conflictCheck = await prisma.event.findFirst({
+    where: {
+      locationId: locationId,
+      OR: [ // capture overlaps of existing event
+        { // existing event smaller than new event
+          start: { gte: startDate },
+          end: { lte: endDate },
+        },
+        { // existing event larger than new event
+          start: { lte: startDate },
+          end: { gte: endDate },
+        },
+        { // existing event to the right of new event
+          start: {
+            gte: startDate,
+            lte: endDate,
+          },
+        },
+        { // existing event to the left of new event
+          end: {
+            gte: startDate,
+            lte: endDate,
+          },
+        },
+      ],
+    },
+  });
+
+  if (conflictCheck) {
+    return res.status(400).json({
+      status: "error",
+      response: "Event conflicts with existing event",
     });
   }
 
@@ -79,7 +115,7 @@ export default async function handler(req: any, res: any) {
       bookedBy: session.user.id,
     },
   });
-  
+
 
   res.status(200).json({ eventId: result.uid })
 }
