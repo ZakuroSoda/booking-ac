@@ -5,7 +5,7 @@
 - [X] Implement Booked-By WHO
 - [ ] Test Mobile-Friendly
 - [ ] Let user change their username?
-- [ ] PREVENT SAME SLOT BOOKING + HANDLE CONFLICTS?
+- [X] PREVENT SAME SLOT BOOKING
 - [ ] Implement Administrative System
 - [ ] Implement Approval System by Teachers
 - [ ] Collect Market Data on NEED for this System

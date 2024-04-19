@@ -5,6 +5,8 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import classNames from "classnames";
 import { Location } from "@prisma/client";
+import Image from "next/image";
+import settingsIcon from "./settings.svg";
 
 export default function NavBar({
   locations,
@@ -56,10 +58,10 @@ export default function NavBar({
 
         {session?.user?.email ? (
           <div
-            className={styles.navlink}
+            className={styles.navlinkIcon}
             onClick={() => signOut({ callbackUrl: "/" })}
           >
-            Logout
+            <Image className={styles.icon} src={settingsIcon} alt="Settings" />
           </div>
         ) : (
           <Link
