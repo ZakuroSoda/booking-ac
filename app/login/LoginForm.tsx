@@ -54,7 +54,7 @@ export default function LoginForm() {
             />
           </div>
           <div className={styles.loginFormRow}>
-            <Button text="Submit" />
+            <Button type="default" text="Submit" />
           </div>
         </form>
       </div>

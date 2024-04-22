@@ -1,0 +1,29 @@
+.edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh 10vw;
+  gap: 1rem;
+}
+
+.editHeader {
+  font-size: 2rem;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+@media only screen and (max-width: 768px) {
+  .editForm {
+      width: 100%;
+  }
+}
+
+.saveButton {
+  transition: opacity 0.5s ease-in-out;
+}

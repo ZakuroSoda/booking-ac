@@ -161,7 +161,7 @@ export default function BookingForm({ location }: { location: { id: number, name
             />
           </div>
           <div className={styles.editFormRow}>
-            <Button text="Submit" />
+            <Button type="default" text="Submit" />
           </div>
         </form>
       </div>

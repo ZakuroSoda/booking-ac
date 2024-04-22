@@ -1,5 +1,4 @@
 "use client"
-import { signOut } from "next-auth/react"
 import { usePathname } from "next/navigation"
 import styles from "./Navbar.module.css"
 import Link from "next/link"
@@ -57,11 +56,10 @@ export default function NavBar({
         )}
 
         {session?.user?.email ? (
-          <div
-            className={styles.navlinkIcon}
-            onClick={() => signOut({ callbackUrl: "/" })}
-          >
-            <Image className={styles.icon} src={settingsIcon} alt="Settings" />
+          <div className={styles.navlinkIcon}>
+            <Link href="/account">
+              <Image className={styles.icon} src={settingsIcon} alt="Settings" />
+            </Link>
           </div>
         ) : (
           <Link

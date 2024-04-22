@@ -1,4 +1,4 @@
-.button {
+.defaultButton {
   padding: 0.6rem 1rem;
   width: 100%;
   border-radius: 8px;
@@ -12,6 +12,24 @@
   cursor: pointer;
 }
 
-.button:hover {
+.defaultButton:hover {
   background-color: #023047;
+}
+
+.dangerButton {
+  padding: 0.6rem 1rem;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #c70039;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+}
+
+.dangerButton:hover {
+  background-color: #9c002c;
 }
