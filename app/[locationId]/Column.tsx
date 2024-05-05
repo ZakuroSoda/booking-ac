@@ -1,3 +1,5 @@
+"use client"
+
 import styles from './column.module.css'
 import { Event } from '@prisma/client'
 import { timeFormatter } from '@/components/Card/Card'
@@ -11,20 +13,20 @@ export default function Column({ locationId, date, events }: {
 }) {
   return (
     <>
-      <div className={styles.day}>
-        <div className={styles.dayHeader}>{date}</div>
+      <div className={ events.length === 0 ? classNames(styles.day, styles.noEvent) : styles.day }>
+        <div className={ styles.dayHeader }>{date}</div>
         <div className={styles.dayEvents}>
           {events.map((event, key) => (
             <>
               <Link href={`${locationId}/${event.uid}`}>
-              <div className={
-                ongoing(event) ? classNames(styles.dayEvent, styles.ongoing) :
-                  over(event) ? classNames(styles.dayEvent, styles.over) :
-                    styles.dayEvent
+                <div className={
+                  ongoing(event) ? classNames(styles.dayEvent, styles.ongoing) :
+                    over(event) ? classNames(styles.dayEvent, styles.over) :
+                      styles.dayEvent
                 } key={key}>
-                <div className={styles.dayEventTitle}>{titleFormatter(event.title)}</div>
-                <div className={styles.dayEventTime}>{timeFormatter(event.start)} - {timeFormatter(event.end)}</div>
-              </div>
+                  <div className={styles.dayEventTitle}>{titleFormatter(event.title)}</div>
+                  <div className={styles.dayEventTime}>{timeFormatter(event.start)} - {timeFormatter(event.end)}</div>
+                </div>
               </Link>
             </>
           ))}
@@ -45,9 +47,14 @@ function ongoing(event: Event) {
 }
 
 function titleFormatter(title: string) {
-  if (title.length > 14) {
+  if (title.length > 14 && !isMobile()) {
     return title.substring(0, 11) + '...'
   } else {
     return title
   }
+}
+
+function isMobile() {
+  const mobileBreakpoint = 768;
+  return window.innerWidth <= mobileBreakpoint;
 }

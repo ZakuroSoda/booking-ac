@@ -2,10 +2,8 @@
 
 ## TODO:
 
-- [X] Implement Booked-By WHO
 - [ ] Test Mobile-Friendly
-- [ ] Let user change their username?
-- [X] PREVENT SAME SLOT BOOKING
+- [ ] fix session.user.id type error
 - [ ] Implement Administrative System
 - [ ] Implement Approval System by Teachers
 - [ ] Collect Market Data on NEED for this System

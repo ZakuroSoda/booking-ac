@@ -28,6 +28,7 @@ export default function Edit({ username }: { username?: string | null }) {
     if (name?.length < 3 || name?.length > 16) {
       toast.error("Name must be between 3 and 16 characters!")
     } else {
+      toast.loading("Updating name...")
       const result = await fetch("/api/edit-name", {
         method: "POST",
         body: JSON.stringify({ name }),

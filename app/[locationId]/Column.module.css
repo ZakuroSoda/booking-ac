@@ -9,6 +9,26 @@
 
 }
 
+@media only screen and (max-width: 768px) {
+  .day {
+    flex: 0 0 auto;
+    width: 100%;
+    border-right: none;
+    align-items: flex-start;
+  }
+}
+
+.noEvent {
+  visibility: visible;
+}
+
+@media only screen and (max-width: 768px) {
+  .noEvent {
+    visibility: hidden;
+    height: 0;
+  }
+}
+
 .dayEvents{
   display: flex;
   flex-direction: column;
@@ -37,6 +57,14 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .dayEvent {
+    width: calc(100vw - 4rem - 1rem - 0.5rem);
+    /*2rem main body padding on both sides + 0.5rem event card padding*/
+    /* 0.5rem extra for "good measure" */
+  }
 }
 
 .over {

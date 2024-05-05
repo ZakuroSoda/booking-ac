@@ -39,7 +39,6 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({ user }) {
       const email = user.email ?? ''
-
       const check = await prisma.emailWhitelist.findFirst({
         where: {
           email
@@ -48,7 +47,6 @@ export const authOptions: NextAuthOptions = {
       if (!check) {
         return false
       }
-
       return true
     }
   },

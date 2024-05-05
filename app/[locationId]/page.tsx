@@ -31,6 +31,7 @@ export default async function page({
 
   const dates = dayMapper()
   const events = await eventMapper(locationId)
+  const noEvents = events.every((day) => day.length === 0)
 
   return (
     <>
@@ -40,6 +41,9 @@ export default async function page({
           <button className={styles.button}>Book an Event</button>
         </Link>
       </div>
+      {noEvents &&
+        <div className={styles.noEvents}>No Events for This Week</div>
+      }
       <div className={styles.calendar}>
         {dates.map((date, key) => (
           <Column locationId={locationId} date={date} key={key} events={events[key]} />
@@ -98,6 +102,10 @@ async function eventMapper(locationId: number) {
       }
     }
   })
+
+  if (events.length === 0) {
+    return [[], [], [], [], [], [], []]
+  }
 
   const eventsArray = []
   for (let i = 0; i < 7; i++) {
