@@ -18,7 +18,7 @@ export default function Column({ locationId, date, events }: {
         <div className={styles.dayEvents}>
           {events.map((event, key) => (
             <>
-              <Link href={`${locationId}/${event.uid}`}>
+              <Link href={`${locationId}/${event.uid}`} key={key}>
                 <div className={
                   ongoing(event) ? classNames(styles.dayEvent, styles.ongoing) :
                     over(event) ? classNames(styles.dayEvent, styles.over) :
@@ -56,5 +56,8 @@ function titleFormatter(title: string) {
 
 function isMobile() {
   const mobileBreakpoint = 768;
+  if (typeof window === 'undefined') {
+    return false;
+  }
   return window.innerWidth <= mobileBreakpoint;
 }
