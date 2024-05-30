@@ -28,7 +28,7 @@ export default function NavBar({
         >
           Home
         </Link>
-        {locations.map((location) => (
+        {/* {locations.map((location) => (
           <Link
             href={`/${location.id}`}
             className={classNames(
@@ -39,7 +39,7 @@ export default function NavBar({
           >
             {location.name}
           </Link>
-        ))}
+        ))} */}
       </div>
 
       <div className={styles.right}>

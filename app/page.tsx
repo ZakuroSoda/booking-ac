@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import styles from "./page.module.css"
-import Card from "../components/Card/Card"
+import Gallery from "./Gallery"
 
 const prisma = new PrismaClient()
 
@@ -23,10 +23,10 @@ export interface event {
 }
 
 export default async function page() {
-  const locations = await prisma.location.findMany()
+  let rawlocations = await prisma.location.findMany()
   const today = new Date()
-  let events = []
-  for (const location of locations) {
+  let locations = []
+  for (const location of rawlocations) {
     const event = await prisma.event.findFirst({
       where: {
         locationId: location.id,
@@ -55,12 +55,13 @@ export default async function page() {
         }
       }
     })
-    if (event) {
-      events.push(event)
-    } else {
-      events.push(null)
-    }
+    locations.push({
+      ...location,
+      event: event || null
+    });
   }
+
+  console.log(locations)
 
   return (
     <>
@@ -68,11 +69,7 @@ export default async function page() {
         <h1 className={styles.heroText}>
           Welcome to Booking@AC.
         </h1>
-        <div className={styles.gallery}>
-          {events.map((event, index) => (
-            <Card location={locations[index]} event={event} key={index}/>
-          ))}
-        </div>
+        <Gallery locations={locations} />
       </div>
     </>
   )

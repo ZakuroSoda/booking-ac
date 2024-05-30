@@ -15,11 +15,7 @@ export default function Card({ location, event }: { location: Location, event: e
             </Link>
           </div>
           <blockquote>
-            There are no events happening at {location.name} right now.
-            <br /><br />
-            Students may feel free to use the venue for free play. Students are reminded to wear PE attire and hydrate regularly.
-            <br /><br />
-            For external users, please book the facility through other platforms.
+            Nothing at {location.name} right now. Feel free to use it!
           </blockquote>
         </div>
       </>
