@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import styles from './column.module.css'
 import { Event } from '@prisma/client'
 import { timeFormatter } from '@/components/Card/Card'
@@ -11,6 +12,8 @@ export default function Column({ locationId, date, events }: {
   date: string,
   events: Event[]
 }) {
+  const isMobile = useIsMobile();
+
   return (
     <>
       <div className={ events.length === 0 ? classNames(styles.day, styles.noEvent) : styles.day }>
@@ -24,7 +27,7 @@ export default function Column({ locationId, date, events }: {
                     over(event) ? classNames(styles.dayEvent, styles.over) :
                       styles.dayEvent
                 } key={key}>
-                  <div className={styles.dayEventTitle}>{titleFormatter(event.title)}</div>
+                  <div className={styles.dayEventTitle}>{titleFormatter(event.title, isMobile)}</div>
                   <div className={styles.dayEventTime}>{timeFormatter(event.start)} - {timeFormatter(event.end)}</div>
                 </div>
               </Link>
@@ -46,18 +49,27 @@ function ongoing(event: Event) {
   return now >= event.start && now <= event.end
 }
 
-function titleFormatter(title: string) {
-  if (title.length > 14 && !isMobile()) {
+function titleFormatter(title: string, isMobile: boolean) {
+  if (title.length > 14 && !isMobile) {
     return title.substring(0, 11) + '...'
+  } else if (title.length > 33) {
+    return title.substring(0, 30) + '...'
   } else {
     return title
   }
 }
 
-function isMobile() {
-  const mobileBreakpoint = 768;
-  if (typeof window === 'undefined') {
-    return false;
-  }
-  return window.innerWidth <= mobileBreakpoint;
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
 }
