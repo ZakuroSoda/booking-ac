@@ -61,8 +61,6 @@ export default async function page() {
     });
   }
 
-  console.log(locations)
-
   return (
     <>
       <div className={styles.text}>
