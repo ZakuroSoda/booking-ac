@@ -13,7 +13,8 @@ export interface event {
   recurrence: string
   start: Date
   end: Date
-  Locations: {
+  Location: {
+    id: number
     name: string
   }
   User: {
@@ -46,7 +47,7 @@ export default async function page() {
         recurrence: true,
         start: true,
         end: true,
-        Locations: true,
+        Location: true,
         User: {
           select: {
             email: true,

@@ -41,7 +41,7 @@ export default async function page({
       recurrence: true,
       start: true,
       end: true,
-      Locations: true,
+      Location: true,
       User: {
         select: {
           email: true,
@@ -61,7 +61,7 @@ export default async function page({
     <>
       <div className={styles.item}>
         <div className={styles.itemHeader}>
-          {event.Locations.name}: {event.title}
+          {event.Location.name}: {event.title}
         </div>
         <div className={styles.itemTime}>
           {timeFormatter(event.start)} - {timeFormatter(event.end)}

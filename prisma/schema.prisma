@@ -56,7 +56,7 @@ model Event {
   start       DateTime
   end         DateTime
   locationId  Int
-  Locations   Location @relation(fields: [locationId], references: [id])
+  Location    Location @relation(fields: [locationId], references: [id])
   bookedBy    String
   User        User     @relation(fields: [bookedBy], references: [id])
 }

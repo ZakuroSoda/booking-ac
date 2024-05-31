@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Card from "@/components/Card/Card"
+import { event } from "@/app/page"
 import styles from "./Gallery.module.css"
 import Field from "@/components/formField/Field"
 
@@ -10,18 +11,7 @@ export default function Gallery({ locations }:
     locations: {
       id: number,
       name: string,
-      event: {
-        title: string,
-        type: string,
-        description: string,
-        spectators: string,
-        sharing: string,
-        recurrence: string,
-        start: Date,
-        end: Date,
-        Locations: { id: number, name: string, },
-        User: { name: string | null, email: string, },
-      } | null
+      event: event | null
     }[],
   }
 ) {
@@ -44,7 +34,7 @@ export default function Gallery({ locations }:
     <>
       <div className={styles.search}>
         <Field
-          label="Search"
+          label="Search for Locations"
           id="search"
           name="search"
           type="text"
