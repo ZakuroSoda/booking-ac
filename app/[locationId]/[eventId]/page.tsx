@@ -65,6 +65,9 @@ export default async function page({
         <div className={styles.itemHeader}>
           {event.Location.name}: {event.title}
         </div>
+        <div className={styles.itemDate}>
+          {new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(event.start)} {event.start.toLocaleDateString()}
+        </div>
         <div className={styles.itemTime}>
           {timeFormatter(event.start)} - {timeFormatter(event.end)}
         </div>

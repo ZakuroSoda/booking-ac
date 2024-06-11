@@ -10,6 +10,13 @@
 .itemHeader {
   font-weight: bold;
   font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.itemDate {
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .itemTime {
