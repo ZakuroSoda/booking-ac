@@ -1,6 +1,8 @@
+// Should non-authenticated users be able to read event details
+
 import { redirect } from 'next/navigation'
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
+// import { getServerSession } from "next-auth/next"
+// import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { PrismaClient } from "@prisma/client"
 import { timeFormatter } from '@/components/Card/Card'
 import styles from "./page.module.css"
@@ -15,10 +17,10 @@ export default async function page({
     eventId: string
   }
 }) {
-  const session = await getServerSession(authOptions)
-  if (!session?.user) {
-    redirect("/login")
-  }
+  // const session = await getServerSession(authOptions)
+  // if (!session?.user) {
+  //   redirect("/login")
+  // }
   const locationId = parseInt(params.locationId)
   if (isNaN(locationId)) {
     redirect("/")
